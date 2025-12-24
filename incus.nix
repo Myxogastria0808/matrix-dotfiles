@@ -1,3 +1,4 @@
+  GNU nano 8.7                         incus.nix                                    
 {
   lib,
   config,
