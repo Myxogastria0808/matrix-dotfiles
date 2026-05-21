@@ -15,38 +15,15 @@ in
     };
   };
 
-  services.nginx = {
+  services.caddy = {
     enable = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    recommendedProxySettings = true;
-
-    virtualHosts.${serverName} = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/_matrix/" = {
-        proxyPass = "http://127.0.0.1:6167";
-        extraConfig = ''
-          proxy_set_header X-Forwarded-For $remote_addr;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          client_max_body_size 20M;
-        '';
-      };
-      locations."/_synapse/client/" = {
-        proxyPass = "http://127.0.0.1:6167";
-        extraConfig = ''
-          proxy_set_header X-Forwarded-For $remote_addr;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          client_max_body_size 20M;
-        '';
-      };
-    };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "admin@yukiosada.work";
+    globalConfig = ''
+      email admin@yukiosada.work
+    '';
+    virtualHosts.${serverName}.extraConfig = ''
+      reverse_proxy /_matrix/* http://127.0.0.1:6167
+      reverse_proxy /_synapse/client/* http://127.0.0.1:6167
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
