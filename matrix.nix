@@ -4,14 +4,24 @@ let
   serverName = "matrix.yukiosada.work";
 in
 {
-  services.matrix-conduit = {
+  services.matrix-synapse = {
     enable = true;
-    settings.global = {
+    settings = {
       server_name = serverName;
-      port = 6167;
-      database_backend = "rocksdb";
-      allow_registration = false;
-      allow_federation = true;
+      public_baseurl = "https://${serverName}";
+      enable_registration = false;
+      listeners = [
+        {
+          port = 8008;
+          bind_addresses = [ "127.0.0.1" ];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [
+            { names = [ "client" "federation" ]; compress = false; }
+          ];
+        }
+      ];
     };
   };
 
@@ -21,8 +31,8 @@ in
       email r.rstudio.c@gmail.com
     '';
     virtualHosts.${serverName}.extraConfig = ''
-      reverse_proxy /_matrix/* http://127.0.0.1:6167
-      reverse_proxy /_synapse/client/* http://127.0.0.1:6167
+      reverse_proxy /_matrix/* http://127.0.0.1:8008
+      reverse_proxy /_synapse/client/* http://127.0.0.1:8008
     '';
   };
 
