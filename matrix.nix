@@ -18,7 +18,7 @@ in
   services.caddy = {
     enable = true;
     globalConfig = ''
-      email admin@yukiosada.work
+      email r.rstudio.c@gmail.com
     '';
     virtualHosts.${serverName}.extraConfig = ''
       reverse_proxy /_matrix/* http://127.0.0.1:6167
