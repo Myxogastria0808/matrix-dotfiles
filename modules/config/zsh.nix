@@ -18,9 +18,6 @@
       EXCLAMATION="!!!"
       cowsay "Welcome to " ''$DISTRO''$EXCLAMATION | lolcat
 
-      # Hook direnv into zsh for auto-loading .envrc files on directory change
-      eval "$(direnv hook zsh)"
-
       # Set Oh My Zsh custom directory (for custom themes and plugins)
       ZSH_CUSTOM=$HOME/.config/oh-my-zsh
 
