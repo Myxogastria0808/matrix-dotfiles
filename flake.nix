@@ -31,7 +31,7 @@
       # ── NixOS ─────────────────────────────────────────────────────────────────
       # Replace "nixos" with your hostname if different from the default
       nixosConfigurations = {
-        ${inputs.containerName} = inputs.nixpkgs.lib.nixosSystem {
+        ${containerName} = inputs.nixpkgs.lib.nixosSystem {
           inherit pkgs;
           # Merge base config, app modules, and nixvim from the external flake
           modules = [

@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  import = [
+  imports = [
     ./fonts.nix
     ./matrix.nix
     ./starship.nix
     ./zsh.nix
   ];
+
+  programs.direnv.enable = true;
 
   environment.systemPackages = with pkgs; [
     # Text editor
