@@ -36,7 +36,7 @@ in
       listeners = [
         {
           port = 8008;
-          bind_addresses = [ "127.0.0.1" ];
+          bind_addresses = [ "0.0.0.0" ];
           type = "http";
           tls = false;
           x_forwarded = true;
@@ -48,16 +48,6 @@ in
     };
   };
 
-  services.caddy = {
-    enable = true;
-    globalConfig = ''
-      email r.rstudio.c@gmail.com
-    '';
-    virtualHosts.${serverName}.extraConfig = ''
-      reverse_proxy /_matrix/* http://127.0.0.1:8008
-      reverse_proxy /_synapse/client/* http://127.0.0.1:8008
-    '';
-  };
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  # ホスト側Caddyからの接続を許可
+  networking.firewall.allowedTCPPorts = [ 8008 ];
 }
