@@ -5,6 +5,7 @@
     "${modulesPath}/virtualisation/lxc-container.nix"
     ./incus.nix
     ./matrix.nix
+    ./users.nix
   ];
 
   networking = {
