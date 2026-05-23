@@ -41,13 +41,19 @@ in
           tls = false;
           x_forwarded = true;
           resources = [
-            { names = [ "client" "federation" ]; compress = false; }
+            {
+              names = [
+                "client"
+                "federation"
+              ];
+              compress = false;
+            }
           ];
         }
       ];
     };
   };
 
-  # ホスト側Caddyからの接続を許可
   networking.firewall.allowedTCPPorts = [ 8008 ];
 }
+
