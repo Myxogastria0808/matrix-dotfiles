@@ -1,0 +1,6 @@
+{ containerName, ... }:
+
+{
+  networking.hostName = containerName;
+}
+
