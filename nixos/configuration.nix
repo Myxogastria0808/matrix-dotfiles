@@ -46,15 +46,6 @@
 
   system.stateVersion = "26.05";
 
-  environment.enableAllTerminfo = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  system.activationScripts.zshrc = ''
-    if [ ! -f /home/${username}/.zshrc ]; then
-      touch /home/${username}/.zshrc
-      chown ${username}:users /home/${username}/.zshrc
-    fi
-  '';
 }
 
