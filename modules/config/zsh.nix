@@ -13,6 +13,9 @@
     };
     # Shell initialization script - runs on every new shell session
     shellInit = ''
+      # Suppress zsh-newuser-install (system config in /etc/zshrc handles everything)
+      functions[zsh-newuser-install]=:
+
       # Print a welcome message with the distro name using cowsay and lolcat
       DISTRO=`sed -n -e /^NAME=/p /etc/os-release | cut -c 6-`
       EXCLAMATION="!!!"
