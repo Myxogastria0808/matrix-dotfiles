@@ -11,6 +11,8 @@
   programs.direnv.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # Version control
+    git
     # Text editor
     inputs.nixvimConfig.packages.${pkgs.stdenv.hostPlatform.system}.default # NixVim configuration from the external flake
     # Lightweight and flexible command-line JSON processor
