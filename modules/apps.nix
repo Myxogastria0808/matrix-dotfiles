@@ -3,6 +3,7 @@
 {
   imports = [
     ./config/fonts.nix
+    ./config/git.nix
     ./config/matrix.nix
     ./config/starship.nix
     ./config/zsh.nix
