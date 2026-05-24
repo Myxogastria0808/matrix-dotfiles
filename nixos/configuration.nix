@@ -45,5 +45,7 @@
   };
 
   system.stateVersion = "26.05";
+
+  environment.enableAllTerminfo = true;
 }
 
