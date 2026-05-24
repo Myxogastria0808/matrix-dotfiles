@@ -9,7 +9,7 @@ Internet
     │
     ▼
 Ubuntu Server (Caddy) :80/:443
-    └── matrix.yukiosada.work → Incus container (Synapse) :8008
+    └── <your-domain> → Incus container (Synapse) :8008
 ```
 
 - **Host**: Ubuntu Server with Incus and Caddy
@@ -37,7 +37,7 @@ Ubuntu Server (Caddy) :80/:443
 ## Prerequisites
 
 - Ubuntu Server host with Incus installed
-- A domain pointing to the server (`matrix.yukiosada.work`)
+- A domain pointing to the server (`<your-domain>`)
 - Ghostty terminal (for terminfo setup)
 
 ---
@@ -49,13 +49,13 @@ Ubuntu Server (Caddy) :80/:443
 Add an A record pointing to your server's global IP:
 
 ```
-matrix.yukiosada.work.  IN  A  <your-server-ip>
+<your-domain>.  IN  A  <your-server-ip>
 ```
 
 Verify propagation:
 
 ```bash
-dig matrix.yukiosada.work
+dig <your-domain>
 ```
 
 ### 2. Host: UFW Firewall
@@ -89,7 +89,7 @@ incus launch images:nixos/unstable matrix --device root,size=100GiB
 If the storage pool is too small, expand it first:
 
 ```bash
-incus storage set default size=2TiB
+incus storage set default size=<size>  # e.g. 500GiB, 2TiB
 ```
 
 Add network device if the container has no network interface:
@@ -136,10 +136,10 @@ Edit `/etc/caddy/Caddyfile`:
 
 ```caddyfile
 {
-    email r.rstudio.c@gmail.com
+    email <your-email>
 }
 
-matrix.yukiosada.work {
+<your-domain> {
     reverse_proxy <container-ip>:8008
 }
 ```
@@ -216,5 +216,5 @@ nixos-rebuild switch --flake /etc/nixos#matrix \
 nix-collect-garbage -d
 
 # Or expand the storage pool on the host
-incus storage set default size=2TiB
+incus storage set default size=<size>  # e.g. 500GiB, 2TiB
 ```
