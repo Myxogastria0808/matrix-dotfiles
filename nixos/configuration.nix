@@ -1,4 +1,4 @@
-{ modulesPath, username, ... }:
+{ modulesPath, username, pkgs, ... }:
 
 {
   imports = [
@@ -32,7 +32,7 @@
   };
 
   # ── Users ─────────────────────────────────────────────────────────────────────
-  users.defaultUserShell = "/run/current-system/sw/bin/zsh";
+  users.defaultUserShell = pkgs.zsh;
   # Allow users to change their own passwords via the passwd command
   users.mutableUsers = true;
   users.users.${username} = {
@@ -41,7 +41,7 @@
     extraGroups = [
       "wheel"
     ];
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = pkgs.zsh;
   };
 
   system.stateVersion = "26.05";
