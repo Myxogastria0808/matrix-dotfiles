@@ -23,6 +23,10 @@
         DHCP = "ipv4";
         IPv6AcceptRA = true;
       };
+      dhcpV4Config = {
+        UseRoutes = true;
+        UseGateway = true;
+      };
       linkConfig.RequiredForOnline = "routable";
     };
   };

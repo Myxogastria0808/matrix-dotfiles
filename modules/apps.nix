@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./fonts.nix
-    ./matrix.nix
-    ./starship.nix
-    ./zsh.nix
+    ./config/fonts.nix
+    ./config/matrix.nix
+    ./config/starship.nix
+    ./config/zsh.nix
   ];
 
   programs.direnv.enable = true;
