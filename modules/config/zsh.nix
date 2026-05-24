@@ -225,7 +225,7 @@
       # Nix / NixOS
       # Ref: https://discourse.nixos.org/t/using-nix-develop-opens-bash-instead-of-zsh/25075
       "nix-develop" = "nix develop -c $SHELL"; # Open nix devShell in the current shell (zsh)
-      "nixos" = "sudo nixos-rebuild switch"; # Apply NixOS system config
+      "nixos" = "sudo nixos-rebuild switch --flake /etc/nixos#matrix --option sandbox false"; # Apply NixOS system config
       "gc" = "nix-collect-garbage --delete-old"; # Free disk space by deleting old Nix generations
       # Tools
       "net" = "speedtest"; # Ookla network speed test
