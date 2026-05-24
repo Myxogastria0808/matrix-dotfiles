@@ -17,9 +17,14 @@
   outputs =
     inputs:
     let
+      # System
       systems = "x86_64-linux"; # Target architecture
       username = "hello"; # Your Linux username (home directory will be /home/hello)
+      # Incus
       containerName = "matrix"; # Name of the Incus container
+      # GitHub info
+      githubUsername = "Myxogastria0808";
+      githubEmail = "r.rstudio.c@gmail.com";
 
       # Nixpkgs instance with allowUnfree — shared by both NixOS and home-manager
       pkgs = import inputs.nixpkgs {
@@ -44,6 +49,8 @@
             inherit inputs;
             inherit username;
             inherit containerName;
+            inherit githubUsername;
+            inherit githubEmail;
           };
         };
       };
